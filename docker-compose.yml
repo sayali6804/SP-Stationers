@@ -1,0 +1,23 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./frontend  # Path to the frontend directory
+    ports:
+      - "80:80"  # Expose port 80 to access the frontend in the browser
+    networks:
+      - app-network
+  backend:
+    build:
+      context: ./backend  # Path to the backend directory
+    environment:
+      - MONGO_URI=mongodb+srv://saadsiddiquikingindia5:pw04Yowc0t8WiYEm@wad.knmfiga.mongodb.net/Wad?retryWrites=true&w=majority&appName=Wad
+      - PORT=5000
+    ports:
+      - "5000:5000"  # Expose port 5000 for backend API
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
